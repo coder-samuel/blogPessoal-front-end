@@ -1,7 +1,9 @@
 export const environment = {
   production: true,
   token: '',
-  nome: '',
-  id: 0,
-  foto: ''
+  nomeUser: '',
+  fotoUser: '',
+  tipoUser: '',
+  idUser: 0,
+  server: 'https://ovigariano.herokuapp.com/'
 };

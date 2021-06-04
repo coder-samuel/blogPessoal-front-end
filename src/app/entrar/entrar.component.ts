@@ -11,37 +11,31 @@ import { AuthService } from '../service/auth.service';
 })
 export class EntrarComponent implements OnInit {
 
-  //variavel
   userLogin: UserLogin = new UserLogin()
-
   constructor(
-    private auth: AuthService,
-    private router: Router
-  ) { }
+    private authService: AuthService,
+    private router: Router)
+    {}
 
   ngOnInit() {
-    window.scroll
+    window.scroll(0,0)
   }
-
   entrar(){
-    this.auth.entrar(this.userLogin).subscribe((resp: UserLogin)=>{
+    this.authService.entrar(this.userLogin).subscribe((resp: UserLogin)=>{
       this.userLogin = resp
+
 
       environment.token = this.userLogin.token
       environment.nome = this.userLogin.nome
       environment.foto = this.userLogin.foto
       environment.id = this.userLogin.id
 
-      //checando se as informações foram acessadas
-      console.log(environment.token)
-      console.log(environment.nome)
       console.log(environment.foto)
-      console.log(environment.id) 
-
+    
       this.router.navigate(['/inicio'])
-    }, erro => {
+    }, erro =>{
       if(erro.status == 500){
-        alert('Usuário ou senha estão incorretos')
+        alert('Usuário ou senha estão incorretos!')
       }
     })
   }

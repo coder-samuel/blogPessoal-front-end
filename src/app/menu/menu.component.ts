@@ -1,6 +1,6 @@
+mport { Router } from '@angular/router';
+import { environment } from './../../environments/environment.prod';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-menu',
@@ -11,12 +11,12 @@ export class MenuComponent implements OnInit {
 
   nome = environment.nome
   foto = environment.foto
- 
+
   constructor(
     private router: Router
   ) { }
 
-  ngOnInit() {
+  ngOnInit(){
   }
 
   sair(){
@@ -25,7 +25,6 @@ export class MenuComponent implements OnInit {
     environment.nome = ''
     environment.foto = ''
     environment.id = 0
-  
   }
 
 }

@@ -1,104 +1,64 @@
 <div class="container-fluid">
-    <div class="row bg-light align-items-center">
-        <div class="col-md-6">
 
-            <div class="row d-flex justify-content-center">
-                <div class="col-md-6">
-                    <h1 class="fs-54">Seja bem vindo(a)!</h1>
-                    <h5 class="fs-18">expresse aqui os seus pensamentos e opiniões</h5>
-                </div>
+    <div class="row bg-secondary d-flex justify-content-center">
+      <div class="col-md-12 text-white">
+  
+        <a routerLink='/inicio' class="text-white text-left">
+          <i class="fa fa-angle-double-left" aria-hidden="true"></i> início
+        </a>
+  
+        <h1 class="fs-54 text-center">Temas</h1>
+        <h5 class="fs-18 text-center">Veja aqui todos os temas cadastrados ou cadastre um novo:</h5>
+  
+        <div class="row d-flex justify-content-center mb-5 mt-4">
+          <div class="col-md-3">
+            <div class="form-group">
+              <input type="text" class="form-control" id="titulo" placeholder="Digite a descrição do tema"
+                [(ngModel)]='tema.descricao'>
             </div>
-
-            <div class="row d-flex justify-content-center mt-3">
-                <div class="col-md-6">
-                    <button class="btn mr-2 text-white" style="background-color:darkolivegreen" data-toggle="modal" data-target="#ExemploModalCentralizado">Nova Postagem</button>
-                    <a class="btn btn-outline-secondary" href="#postagens">Ver Postagens</a>
-                </div>
-
+            <div class="d-flex justify-content-center">
+              <button class="btn btn-light" (click)='cadastrar()'>Cadastrar</button>
             </div>
-
+  
+          </div>
         </div>
-
-        <div class="col-md-6 d-flex justify-content-center ">
-            <img src="https://i.imgur.com/2wy3wkH.png" alt="Imagem de post" width="500px" height="500px">
-        </div>
+      </div>
+  
+  
     </div>
-
-
-</div>
-
-<!--Nav-->
-<div class="container mb-5 mt-5" id="postagens">
-    <ul class="nav nav-tabs d-flex justify-content-center" id="myTab" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active text-success font-weight-bold" id="todasPostagens-tab" data-toggle="tab"
-                href="#todasPostagens" role="tab" aria-controls="todasPostagens" aria-selected="true">Todas as postagens</a>
-
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-success font-weight-bold" id="minhasPostagens-tab" data-toggle="tab"
-                href="#minhasPostagens" role="tab" aria-controls="minhasPostagens" aria-selected="false">Minhas postagens</a>
-
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-success font-weight-bold" id="postagemTema-tab" data-toggle="tab"
-                href="#postagemTema" role="tab" aria-controls="postagemTema" aria-selected="false">Postagens por tema</a>
-        </li>
-    </ul>
-
-    <div class="tab-content" id="myTabContent">
-
-        <div class="tab-pane fade show active" id="todasPostagens" role="tabpanel" aria-labelledby="todasPostagens-tab">
-            Todas postagens</div>
-
-        <div class="tab-pane fade" id="minhasPostagens" role="tabpanel" aria-labelledby="minhasPostagens-tab">Minhas
-            postagens</div>
-
-        <div class="tab-pane fade" id="postagemTema" role="tabpanel" aria-labelledby="postagemTema-tab">Postagens por
-            tema</div>
-
+  
+  </div>
+  
+  <div class="container">
+  
+    <div class="row mt-5">
+      <div class="col-md-12">
+        <h2 class="text-center">Todos os Temas</h2>
+      </div>
     </div>
-
-</div>
-<!--/Nav-->
-
-<!-- Modal -->
-<div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog"
-    aria-labelledby="TituloModalCentralizado" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="TituloModalCentralizado">Nova Postagem</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <!--Formulário-->
-            <div class="modal-body">
-            
-                <div class="form-group">
-                    <label for="titulo">Título</label>
-                    <input type="text" class="form-control" id="titulo" placeholder="Digite o título">
-                </div>
-                <div class="form-group">
-                    <label for="texto">Texto</label>
-                    <textarea class="form-control" name="texto" id="texto" rows="3"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="text">Escolha um tema ou <a data-dismiss="modal" routerLink='/tema'>cadastre um novo</a></label>
-                    <select class="form-control" name="tema" id="tema">
-                        <option value="">Temas</option>
-                    </select>
-                </div>
-            </div>
-             <!--/Formulário-->
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-success">Publicar</button>
-            </div>
-        </div>
+  
+    <div class="row mt-3 mb-5 d-flex justify-content-center">
+      <div class="col-md-6">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Descrição</th>
+              <th class="text-right" scope="col">Modificações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let tema of listaTemas'>
+              <th>{{tema.id}}</th>
+              <td>{{tema.descricao}}</td>
+              <td class="d-flex justify-content-end">
+                <a class="btn btn-info mr-3" [routerLink]="['/tema-edit', tema.id]">Editar</a>
+                <button class="btn btn-danger" [routerLink]="['/tema-delete', tema.id]">Apagar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-</div>
-<!--/Modal-->
+  
+  </div>
