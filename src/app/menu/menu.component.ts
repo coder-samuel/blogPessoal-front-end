@@ -1,4 +1,4 @@
-mport { Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { environment } from './../../environments/environment.prod';
 import { Component, OnInit } from '@angular/core';
 
